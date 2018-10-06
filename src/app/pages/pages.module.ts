@@ -15,7 +15,12 @@ import {ChartsModule} from 'ng2-charts';
 
 
 import {PAGES_ROUTES} from './pages.routes';
+
+// Increment component
 import {IncrementComponent} from '../components/increment/increment.component';
+
+// DoughnutGraph component
+import {DoughnutGraphComponent} from '../components/doughnut-graph/doughnut-graph.component';
 
 
 
@@ -26,7 +31,8 @@ import {IncrementComponent} from '../components/increment/increment.component';
     ProgressComponent,
     Graph1Component,
     PagesComponent,
-    IncrementComponent
+    IncrementComponent,
+    DoughnutGraphComponent
   ],
   exports: [
     DashboardComponent,
