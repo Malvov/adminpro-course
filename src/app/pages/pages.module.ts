@@ -22,6 +22,11 @@ import {IncrementComponent} from '../components/increment/increment.component';
 // DoughnutGraph component
 import {DoughnutGraphComponent} from '../components/doughnut-graph/doughnut-graph.component';
 
+// AccountSettings component
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+
+
+
 
 
 
@@ -32,7 +37,8 @@ import {DoughnutGraphComponent} from '../components/doughnut-graph/doughnut-grap
     Graph1Component,
     PagesComponent,
     IncrementComponent,
-    DoughnutGraphComponent
+    DoughnutGraphComponent,
+    AccountSettingsComponent
   ],
   exports: [
     DashboardComponent,
