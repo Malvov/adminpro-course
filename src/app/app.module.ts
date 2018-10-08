@@ -8,9 +8,13 @@ import {APP_ROUTES} from './app.routes';
 // Pages module
 import {PagesModule} from './pages/pages.module';
 
+// Services
+import {SettingsService} from './services/settings.service';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
+
 
 
 
@@ -28,7 +32,7 @@ import { RegisterComponent } from './login/register.component';
     PagesModule,
     FormsModule
   ],
-  providers: [],
+  providers: [SettingsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
