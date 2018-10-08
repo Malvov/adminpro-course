@@ -4,7 +4,7 @@ import {FormsModule} from '@angular/forms';
 // Pages components
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {ProgressComponent} from './progress/progress.component';
-import {Graph1Component} from './graph1/graph1.component';
+import {FirstChartComponent} from './first-chart/first-chart.component';
 import {PagesComponent} from './pages.component';
 
 // Shared module
@@ -34,7 +34,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
   declarations: [
     DashboardComponent,
     ProgressComponent,
-    Graph1Component,
+    FirstChartComponent,
     PagesComponent,
     IncrementComponent,
     DoughnutGraphComponent,
@@ -43,7 +43,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
   exports: [
     DashboardComponent,
     ProgressComponent,
-    Graph1Component,
+    FirstChartComponent,
     PagesComponent
   ],
   imports: [

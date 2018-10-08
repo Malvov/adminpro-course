@@ -15,7 +15,6 @@ export class SettingsService {
   }
 
   setSettings(): void {
-    console.log('saved in local storage');
     localStorage.setItem('settings', JSON.stringify(this.settings));
   }
 
