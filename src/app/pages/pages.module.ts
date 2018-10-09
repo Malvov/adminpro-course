@@ -6,6 +6,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {ProgressComponent} from './progress/progress.component';
 import {FirstChartComponent} from './first-chart/first-chart.component';
 import {PagesComponent} from './pages.component';
+import { PromisesComponent } from './promises/promises.component';
 
 // Shared module
 import {SharedModule} from '../shared/shared.module';
@@ -24,6 +25,8 @@ import {DoughnutGraphComponent} from '../components/doughnut-graph/doughnut-grap
 
 // AccountSettings component
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
+
 
 
 
@@ -38,7 +41,9 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
     PagesComponent,
     IncrementComponent,
     DoughnutGraphComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    PromisesComponent,
+    RxjsComponent
   ],
   exports: [
     DashboardComponent,

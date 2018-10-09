@@ -5,13 +5,17 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {ProgressComponent} from './progress/progress.component';
 import {FirstChartComponent} from './first-chart/first-chart.component';
 import {AccountSettingsComponent} from './account-settings/account-settings.component';
+import { PromisesComponent } from './promises/promises.component';
+import {RxjsComponent} from './rxjs/rxjs.component';
 
 const pagesRoutes: Routes = [
   { path: '', component: PagesComponent, children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'progress', component: ProgressComponent },
-      { path: 'first-chart', component: FirstChartComponent },
-      { path: 'account-settings', component: AccountSettingsComponent},
+      { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard' } },
+      { path: 'progress', component: ProgressComponent, data: { title: 'Progress' } },
+      { path: 'first-chart', component: FirstChartComponent, data: { title: 'Charts' } },
+      { path: 'promises', component: PromisesComponent, data: { title: 'Promises' } },
+      { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Account settings' }},
+      { path: 'rxjs', component: RxjsComponent, data: { title: 'RxJS' }},
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ] }
 ];
