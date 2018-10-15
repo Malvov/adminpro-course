@@ -14,7 +14,7 @@
             <li><a href="javascript:void(0)">My Balance</a></li>
             <li><a href="javascript:void(0)">Inbox</a></li>
             <li><a routerLinkActive="active" routerLink="/account-settings">Account Setting</a></li>
-            <li><a href="javascript:void(0)">Logout</a></li>
+            <li><a (click)="_userService.logOut()" class="pointer">Logout</a></li>
             <li><a routerLink="/login">Login</a></li>
           </ul>
         </li>
