@@ -7,12 +7,16 @@ import {HeaderComponent} from './header/header.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
+// Pipes module
+import { PipesModule } from '../pipes/pipes.module';
+
 
 
 @NgModule({
   imports: [
     RouterModule,
-    CommonModule
+    CommonModule,
+    PipesModule
   ],
   declarations: [
     BreadcrumbsComponent,
