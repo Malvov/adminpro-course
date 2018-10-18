@@ -76,6 +76,16 @@ export class UserService {
          console.log(error);
         });
    }
+
+   getUsers(from: number = 0) {
+     let url = SERVICES_URL + '/users?from=' + from;
+     return this.http.get(url);
+   }
+
+   searchUser(term: string) {
+    let url = SERVICES_URL + '/search/collection/users/' + term;
+    return this.http.get(url).map( (res: any) => res.users );
+   }
    // ===============================================================================
    // ===============================================================================
    // ===============================================================================

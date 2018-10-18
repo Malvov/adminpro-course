@@ -9,6 +9,7 @@ import { PromisesComponent } from './promises/promises.component';
 import { LoginGuard } from '../services/service.index';
 import {RxjsComponent} from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './users/users.component';
 
 
 const pagesRoutes: Routes = [
@@ -20,8 +21,11 @@ const pagesRoutes: Routes = [
       { path: 'first-chart', component: FirstChartComponent, data: { title: 'Charts' } },
       { path: 'promises', component: PromisesComponent, data: { title: 'Promises' } },
       { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Account settings' }},
-      { path: 'profile', component: ProfileComponent, data: { title: 'User profile'} },
       { path: 'rxjs', component: RxjsComponent, data: { title: 'RxJS' }},
+
+      // Management
+      { path: 'profile', component: ProfileComponent, data: { title: 'User profile'} },
+      { path: 'users', component: UsersComponent, data: { title: 'Users management'} },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ] }
 ];

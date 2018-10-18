@@ -1,0 +1,77 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+        <input #input (keyup)="searchUser(input.value)" id="search-user" type="text" class="form-control" placeholder="Search user"> 
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="loading">
+  <div class="col-sm-12">
+    <div class="alert alert-warning text-center">
+      <strong>Loading...</strong>
+      <br>
+      <i class="fa fa-refresh fa-spin fa-2x">
+  
+      </i>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!loading">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+        <h3 class="card-title">
+          Registered users ( <small>{{ usersCount }}</small> )
+        </h3>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Email</th>
+              <th>Name</th>
+              <th>Role</th>
+              <th>Auth</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users" >
+              <td class="w70"><img [src]="user.img | image" alt="User image" class="img50 img-circle"></td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.name }}</td>
+              <td>{{ user.role }}</td>
+              <td>
+                <label *ngIf="user.google" class="label label-danger">Google</label>
+                <label *ngIf="!user.google" class="label label-info">Normal</label>
+              </td>
+              <th>
+                <button class="btn btn-primary">
+                  <i class="fa fa-save"></i>
+                </button>
+                <button class="btn btn-danger">
+                    <i class="fa fa-trash-o"></i>
+                  </button>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+
+        <button (click)="paginate(-5)" class="btn btn-secondary">
+          Previous
+        </button>
+        <button (click)="paginate(5)" class="btn btn-secondary">
+            Next
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>
