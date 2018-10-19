@@ -61,9 +61,13 @@ export class UserService {
      
      return this.http.put(url, user).map(
        (res: any) => {
-         this.setInStorage(res.user._id, this.token, res.user);
-         swal('User updated', this.user.name, 'success');
-         return;
+
+        if (user._id === this.user._id) {
+          this.setInStorage(res.user._id, this.token, res.user);
+        }
+
+         swal('User updated', res.user.name, 'success');
+         return true;
        });
    }
    uploadFile(file: File, id: string) {
@@ -85,6 +89,14 @@ export class UserService {
    searchUser(term: string) {
     let url = SERVICES_URL + '/search/collection/users/' + term;
     return this.http.get(url).map( (res: any) => res.users );
+   }
+
+   deleteUser(id: string) {
+     let url = SERVICES_URL + '/users/' + id + '?token=' + this.token;
+     return this.http.delete(url).map( res => {
+       swal('User is gone', 'User has been successfully deleted', 'success');
+       return true;
+     });
    }
    // ===============================================================================
    // ===============================================================================
