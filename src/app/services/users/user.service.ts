@@ -5,6 +5,7 @@ import { SERVICES_URL } from 'src/app/config/config';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import { UploadsService } from '../uploads/uploads.service';
+declare var swal: any;
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,7 @@ export class UserService {
        this.token = '';
        this.user = null;
      }
+     return { token: this.token, user: this.user} ;
    }
 
    setInStorage(id: string, token: string, user: User) {
@@ -86,7 +88,7 @@ export class UserService {
      return this.http.get(url);
    }
 
-   searchUser(term: string) {
+   searchUsers(term: string) {
     let url = SERVICES_URL + '/search/collection/users/' + term;
     return this.http.get(url).map( (res: any) => res.users );
    }

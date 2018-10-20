@@ -40,15 +40,20 @@ export class UploadModalComponent implements OnInit {
     reader.onload = () => { this.tempFile = reader.result.toString(); };
   }
 
-  uploadFile() {
-    this._uploadsService.uploadFile(this.file, this._uploadModalService.type, this._uploadModalService.id)
-    .then(res => {
+  async uploadFile() {
+    let ok: boolean = false;
+    await this._uploadsService.uploadFile(this.file, this._uploadModalService.type, this._uploadModalService.id)
+    .then((res: any) => {
       this._uploadModalService.notification.emit(res);
       (<HTMLInputElement>document.getElementById('image')).value = '';
+      ok = true;
       this.hideModal();
     }).catch( error => {
       console.log('Error uploading file', error);
     });
+    if (ok) {
+      swal('Image uploaded successfully', '', 'success');
+    }
   }
 
   hideModal() {

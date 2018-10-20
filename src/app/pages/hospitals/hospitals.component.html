@@ -1,4 +1,4 @@
-<app-search-input [placeholder]="'Search users'" (outPutTerm)="searchUsers($event)"></app-search-input>
+<app-search-input [placeholder]="'Search hospitals'" (outPutTerm)="searchHospitals($event)"></app-search-input>
 
 <div class="row animated fadeIn" *ngIf="loading">
   <div class="col-sm-12">
@@ -18,12 +18,12 @@
       <div class="card-body">
 
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-4">
             <h3 class="card-title">
-                Registered users ( <small>{{ usersCount }}</small> )
+                Registered hospitals ( <small>{{ hospitalsCount }}</small> )
             </h3>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-4">
             <button (click)="paginate(-5)" class="btn btn-secondary">
                 Previous
               </button>
@@ -31,39 +31,35 @@
                   Next
               </button>
           </div>
+          <div class="col-sm-4">
+            <button (click)="showFormModal()" type="button" class="btn waves-effect waves-light btn-rounded btn-info">
+              <i class="fa fa-plus"></i>
+              New hospital
+            </button>
+          </div>
 
         </div>
         <table class="table table-hover">
           <thead>
             <tr>
               <th>Image</th>
-              <th>Email</th>
               <th>Name</th>
-              <th>Role</th>
-              <th>Auth</th>
+              <th>User</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of users" >
-              <td class="w70"><img (click)="showModal(user._id)" [src]="user.img | image" alt="User image" class="img50 img-circle pointer"></td>
-              <td>{{ user.email }}</td>
-              <td>{{ user.name }}</td>
+            <tr *ngFor="let hospital of hospitals" >
+              <td class="w70"><img (click)="showUploadModal(hospital._id)" [src]="hospital.img | image: 'hospitals'" alt="Hospital image" class="img50 img-circle pointer"></td>
+              <td><input #input name="name" [(ngModel)]="hospital.name" type="text" class="form-control"></td>
               <td>
-                <select [(ngModel)]="user.role" name="role" class="form-control">
-                  <option value="ADMIN_ROLE">ADMIN ROLE</option>
-                  <option value="USER_ROLE">USER ROLE</option>
-                </select>
-              </td>
-              <td>
-                <label *ngIf="user.google" class="label label-danger">Google</label>
-                <label *ngIf="!user.google" class="label label-info">Normal</label>
+                {{ hospital.user.name }}
               </td>
               <th>
-                <button (click)="saveUser(user)" class="btn btn-primary">
+                <button (click)="saveHospital(hospital)" class="btn btn-primary">
                   <i class="fa fa-save"></i>
                 </button>
-                <button (click)="deleteUser(user)" class="btn btn-danger">
+                <button (click)="deleteHospital(hospital)" class="btn btn-danger">
                     <i class="fa fa-trash-o"></i>
                   </button>
               </th>

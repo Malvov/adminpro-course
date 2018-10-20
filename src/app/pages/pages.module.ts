@@ -33,8 +33,11 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
 import { UploadModalComponent } from '../components/upload-modal/upload-modal.component';
-
-
+import { FormModalComponent } from '../components/form-modal/form-modal.component';
+import { HospitalsComponent } from './hospitals/hospitals.component';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { SearchInputComponent } from '../components/search-input/search-input.component';
+import { DoctorComponent } from './doctors/doctor.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,12 @@ import { UploadModalComponent } from '../components/upload-modal/upload-modal.co
     RxjsComponent,
     ProfileComponent,
     UsersComponent,
-    UploadModalComponent
+    UploadModalComponent,
+    FormModalComponent,
+    HospitalsComponent,
+    DoctorsComponent,
+    DoctorComponent,
+    SearchInputComponent
   ],
   exports: [
     DashboardComponent,

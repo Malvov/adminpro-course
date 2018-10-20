@@ -21,9 +21,9 @@ export class SidebarService {
       title: 'Management',
       icon: 'mdi mdi-folder-lock-open',
       submenu: [
-        {title: 'Users management', url: '/users'},
-        {title: 'Doctors', url: '/doctors'},
-        {title: 'Hospitals', url: '/hospitals'}
+        {title: 'Users', url: '/users'},
+        {title: 'Hospitals', url: '/hospitals'},
+        {title: 'Doctors', url: '/doctors'}
       ]
     }
   ];

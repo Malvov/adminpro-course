@@ -1,3 +1,5 @@
+export { DoctorService } from './doctors/doctor.service';
+export { HospitalService } from './hospitals/hospital.service';
 export { UploadsService } from './uploads/uploads.service';
 export { LoginGuard } from './guards/login.guard';
 export { UserService } from './users/user.service';

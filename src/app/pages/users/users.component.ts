@@ -53,8 +53,7 @@ export class UsersComponent implements OnInit {
     this.getUsers();
   }
 
-  searchUser(term: string) {
-
+  searchUsers(term: string) {
     if (term.length <= 0) {
       this.getUsers();
       return;
@@ -62,7 +61,7 @@ export class UsersComponent implements OnInit {
 
     this.loading = true;
 
-    this._userService.searchUser(term).subscribe( (users: User[]) => {
+    this._userService.searchUsers(term).subscribe( (users: User[]) => {
       this.users = users;
       this.loading = false;
     });
