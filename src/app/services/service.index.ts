@@ -1,3 +1,4 @@
+export { SearchService } from './search/search.service';
 export { DoctorService } from './doctors/doctor.service';
 export { HospitalService } from './hospitals/hospital.service';
 export { UploadsService } from './uploads/uploads.service';

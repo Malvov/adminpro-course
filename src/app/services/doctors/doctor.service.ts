@@ -27,10 +27,6 @@ export class DoctorService {
     let url = SERVICES_URL + '/doctors/' + id;
     return this.http.get(url).map( (res: any) => res.doctor);
   }
-  searchDoctors(term: string) {
-    let url = SERVICES_URL + '/search/collection/doctors/' + term;
-    return this.http.get(url).map((res: any) => res.doctors);
-  }
 
   updateDoctor(doctor: Doctor) {
     let url = SERVICES_URL + '/doctors/' + doctor._id;

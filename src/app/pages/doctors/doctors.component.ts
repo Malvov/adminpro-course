@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Doctor } from '../../models/doctor.model';
-import { DoctorService } from '../../services/service.index';
+import { DoctorService, SearchService } from '../../services/service.index';
 import { UploadModalService } from '../../components/upload-modal/upload-modal.service';
 
 declare var swal: any;
@@ -19,6 +19,7 @@ export class DoctorsComponent implements OnInit {
 
   constructor(
     public _doctorService: DoctorService,
+    public _searchService: SearchService,
     public _uploadModalService: UploadModalService
   ) { }
 
@@ -42,7 +43,7 @@ export class DoctorsComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this._doctorService.searchDoctors(term).subscribe( (doctors: Doctor[]) => {
+    this._searchService.searchDoctors(term).subscribe( (doctors: Doctor[]) => {
       this.doctors = doctors;
       this.loading = false;
     });

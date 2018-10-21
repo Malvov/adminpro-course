@@ -11,7 +11,8 @@ import {
   LoginGuard,
   UploadsService,
   HospitalService,
-  DoctorService
+  DoctorService,
+  SearchService
 } from './service.index';
 
 @NgModule({

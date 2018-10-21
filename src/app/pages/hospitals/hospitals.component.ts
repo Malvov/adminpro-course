@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HospitalService } from '../../services/service.index';
+import { HospitalService, SearchService } from '../../services/service.index';
 import { Hospital } from '../../models/hospital.model';
 import { UploadModalService } from '../../components/upload-modal/upload-modal.service';
 import { FormModalService } from '../../components/form-modal/form-modal.service';
@@ -20,6 +20,7 @@ export class HospitalsComponent implements OnInit {
 
   constructor(
     public _hospitalService: HospitalService,
+    public _searchService: SearchService,
     public _uploadModalService: UploadModalService,
     public _formModalService: FormModalService
   ) { }
@@ -65,7 +66,7 @@ export class HospitalsComponent implements OnInit {
 
     this.loading = true;
 
-    this._hospitalService.searchHospitals(term).subscribe( (hospitals: Hospital[]) => {
+    this._searchService.searchHospitals(term).subscribe( (hospitals: Hospital[]) => {
       this.hospitals = hospitals;
       this.loading = false;
     });

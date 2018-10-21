@@ -88,11 +88,6 @@ export class UserService {
      return this.http.get(url);
    }
 
-   searchUsers(term: string) {
-    let url = SERVICES_URL + '/search/collection/users/' + term;
-    return this.http.get(url).map( (res: any) => res.users );
-   }
-
    deleteUser(id: string) {
      let url = SERVICES_URL + '/users/' + id + '?token=' + this.token;
      return this.http.delete(url).map( res => {

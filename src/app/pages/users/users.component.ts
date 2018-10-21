@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
-import { UserService } from '../../services/service.index';
+import { UserService, SearchService } from '../../services/service.index';
 import { UploadModalService } from '../../components/upload-modal/upload-modal.service';
 
 declare var swal: any;
@@ -18,6 +18,7 @@ export class UsersComponent implements OnInit {
   loading: boolean = true;
   constructor(
     public _userService: UserService,
+    public _searchService: SearchService,
     public _uploadModalService: UploadModalService
   ) { }
 
@@ -61,7 +62,7 @@ export class UsersComponent implements OnInit {
 
     this.loading = true;
 
-    this._userService.searchUsers(term).subscribe( (users: User[]) => {
+    this._searchService.searchUsers(term).subscribe( (users: User[]) => {
       this.users = users;
       this.loading = false;
     });
