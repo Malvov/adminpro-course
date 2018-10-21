@@ -1,3 +1,68 @@
-<p>
-  doctors works!
-</p>
+<app-search-input [placeholder]="'Search doctors'" (outPutTerm)="searchDoctor($event)"></app-search-input>
+<app-loading [loading]="loading"></app-loading>
+<div class="row animated fadeIn" *ngIf="!loading">
+    <div class="col-12">
+        <div class="card">
+        <div class="card-body">
+
+            <div class="row">
+            <div class="col-sm-4">
+                <h3 class="card-title">
+                    Registered doctors ( <small>{{ doctorsCount }}</small> )
+                </h3>
+            </div>
+            <div class="col-sm-4">
+                <button (click)="paginate(-5)" class="btn btn-secondary">
+                    Previous
+                </button>
+                <button (click)="paginate(5)" class="btn btn-secondary">
+                    Next
+                </button>
+            </div>
+
+            <div class="col-sm-4">
+                <a [routerLink]="['/doctors', 'new']" class="btn waves-effect waves-light btn-rounded btn-info">
+                <i class="fa fa-plus"></i>
+                    New doctor
+                </a>
+            </div>
+
+            </div>
+                <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Hospital</th>
+                    <th>User</th>
+                    <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let doctor of doctors" >
+                    <td class="w70"><img (click)="showUploadModal(doctor._id)" [src]="doctor.img | image: 'doctors'" alt="Doctor image" class="img50 img-circle pointer"></td>
+                    <td>
+                        <!-- <input #input name="name" [(ngModel)]="doctor.name" type="text" class="form-control"> -->
+                        {{ doctor.name }}
+                    </td>
+                    <td>
+                        {{ doctor.hospital.name }}
+                    </td>
+                    <td>
+                        {{ doctor.user.name }}
+                    </td>
+                    <th>
+                        <a [routerLink]="['/doctors', doctor._id]" routerLinkActive="router-link-active"  class="btn btn-primary">
+                        <i class="fa fa-edit"></i>
+                        </a>
+                        <button (click)="deleteDoctor(doctor)" class="btn btn-danger">
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                    </th>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -25,8 +25,18 @@ export class HospitalService {
    }
 
    getHospitals(from: number = 0) {
-     let url = SERVICES_URL + '/hospitals?from=' + from;
+     let url = SERVICES_URL + '/hospitals';
+     if (from > 0) {
+      url += '?from=' + from;
+     }
      return this.http.get(url);
+   }
+
+   getHospital(id: string) {
+     let url = SERVICES_URL + '/hospitals/' + id;
+     return this.http.get(url).map( (res: any)=> {
+       return res.hospital;
+      });
    }
 
    searchHospitals(term: string) {

@@ -37,7 +37,9 @@ import { FormModalComponent } from '../components/form-modal/form-modal.componen
 import { HospitalsComponent } from './hospitals/hospitals.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { SearchInputComponent } from '../components/search-input/search-input.component';
+import { LoadingComponent } from '../components/loading/loading.component';
 import { DoctorComponent } from './doctors/doctor.component';
+
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { DoctorComponent } from './doctors/doctor.component';
     HospitalsComponent,
     DoctorsComponent,
     DoctorComponent,
-    SearchInputComponent
+    SearchInputComponent,
+    LoadingComponent
   ],
   exports: [
     DashboardComponent,
