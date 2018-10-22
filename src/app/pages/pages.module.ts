@@ -33,12 +33,12 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
 import { UploadModalComponent } from '../components/upload-modal/upload-modal.component';
-import { FormModalComponent } from '../components/form-modal/form-modal.component';
 import { HospitalsComponent } from './hospitals/hospitals.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { SearchInputComponent } from '../components/search-input/search-input.component';
 import { LoadingComponent } from '../components/loading/loading.component';
 import { DoctorComponent } from './doctors/doctor.component';
+import { SelectModalComponent } from '../components/select-modal/select-modal.component';
 
 
 @NgModule({
@@ -55,11 +55,11 @@ import { DoctorComponent } from './doctors/doctor.component';
     ProfileComponent,
     UsersComponent,
     UploadModalComponent,
-    FormModalComponent,
     HospitalsComponent,
     DoctorsComponent,
     DoctorComponent,
     SearchInputComponent,
+    SelectModalComponent,
     LoadingComponent
   ],
   exports: [

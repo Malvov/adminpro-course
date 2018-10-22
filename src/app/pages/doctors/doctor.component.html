@@ -10,11 +10,15 @@
                   <input [(ngModel)]="doctor.name" name="name" type="text" class="form-control" placeholder="Doctor's name" required>
               </div>
               <div class="form-group">
-                  <label for="Hospital">Hospital</label>
+                  <button type="button" (click)="showHospitalsModal()">Select hospital</button>
+                  <!-- <label for="Hospital">Hospital</label>
                   <select (change)="setHospital($event.target.value)" [(ngModel)]="doctor.hospital" name="hospital" id="" class="form-control" required>
                     <option value="">Select hospital</option>
                     <option *ngFor="let hospital of hospitals" [value]="hospital._id">{{ hospital.name }}</option>
-                  </select>
+                  </select> -->
+                  <!-- <p>
+                    Hospital name
+                  </p> -->
               </div>
               <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
                 <i class="fa fa-save"></i>

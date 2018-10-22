@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HospitalService, SearchService } from '../../services/service.index';
+import { HospitalService, SearchService, ModalService } from '../../services/service.index';
 import { Hospital } from '../../models/hospital.model';
-import { UploadModalService } from '../../components/upload-modal/upload-modal.service';
-import { FormModalService } from '../../components/form-modal/form-modal.service';
+
 
 declare var swal: any;
 
@@ -14,21 +13,20 @@ declare var swal: any;
 export class HospitalsComponent implements OnInit {
 
   hospitals: Hospital[] = [];
+  hospital: Hospital = new Hospital('');
   loading: boolean = true;
   hospitalsCount: number = 0;
-  from: number = 0;
+  from: number = 1;
 
   constructor(
     public _hospitalService: HospitalService,
     public _searchService: SearchService,
-    public _uploadModalService: UploadModalService,
-    public _formModalService: FormModalService
+    public _modalService: ModalService
   ) { }
 
   ngOnInit() {
     this.getHospitals();
-    this._uploadModalService.notification.subscribe(res => this.getHospitals());
-    this._formModalService.notification.subscribe(res => this.getHospitals());
+    this._modalService.notification.subscribe(res => this.getHospitals());
   }
 
   getHospitals() {
@@ -72,7 +70,7 @@ export class HospitalsComponent implements OnInit {
     });
   }
 
-  saveHospital(hospital) {
+  updateHospital(hospital) {
     this._hospitalService.updateHospital(hospital).subscribe();
   }
 
@@ -95,11 +93,26 @@ export class HospitalsComponent implements OnInit {
   }
 
   showUploadModal(id: string) {
-    this._uploadModalService.showModal('hospitals', id);
+    this._modalService.showModal('hospitals', id, 'upload');
   }
 
-  showFormModal() {
-    this._formModalService.showModal('hospital');
+  createHospitalModal() {
+    swal({
+      title: 'Create hospital',
+      text: 'Type hospital name',
+      content: 'input',
+      icon: 'info',
+      buttons: true
+    }).then( (value: string ) => {
+
+      if ( !value || value.length === 0 ) {
+        return;
+      }
+      this.hospital.name = value;
+      this._hospitalService.createHospital(this.hospital)
+              .subscribe( () => this.getHospitals() );
+
+    });
   }
 
 }

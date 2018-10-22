@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Doctor } from '../../models/doctor.model';
 import { Hospital } from '../../models/hospital.model';
-import { DoctorService, HospitalService } from 'src/app/services/service.index';
+import { DoctorService, HospitalService, ModalService } from 'src/app/services/service.index';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UploadModalService } from '../../components/upload-modal/upload-modal.service';
 
 @Component({
   selector: 'app-doctor',
@@ -22,7 +21,7 @@ export class DoctorComponent implements OnInit {
     public _hospitalService: HospitalService,
     public router: Router,
     public activatedRoute: ActivatedRoute,
-    public _uploadModalService: UploadModalService
+    public _modalService: ModalService
   ) {}
 
   ngOnInit() { 
@@ -33,7 +32,7 @@ export class DoctorComponent implements OnInit {
         this.getDoctor(this.doctorId);
       }
     });
-    this._uploadModalService.notification.subscribe(res => {
+    this._modalService.notification.subscribe(res => {
       this.doctor.img = res.doctor.img;
     });
   }
@@ -77,6 +76,9 @@ export class DoctorComponent implements OnInit {
   }
 
   showUploadModal() {
-    this._uploadModalService.showModal('doctors', this.doctorId);
+    this._modalService.showModal('doctors', this.doctorId, 'upload');
+  }
+  showHospitalsModal() {
+    this._modalService.showModal('hospitals', '', 'select');
   }
 }

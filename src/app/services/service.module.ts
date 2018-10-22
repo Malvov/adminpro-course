@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { UploadModalService } from '../components/upload-modal/upload-modal.service';
-import { FormModalService } from '../components/form-modal/form-modal.service';
 import {
   SettingsService,
   SidebarService,
@@ -12,8 +10,10 @@ import {
   UploadsService,
   HospitalService,
   DoctorService,
-  SearchService
+  SearchService,
+  ModalService
 } from './service.index';
+
 
 @NgModule({
   imports: [
@@ -26,12 +26,12 @@ import {
     SidebarService,
     SharedService,
     UserService,
-    HospitalService,
+    LoginGuard,
     UploadsService,
-    UploadModalService,
-    FormModalService,
+    HospitalService,
     DoctorService,
-    LoginGuard
+    SearchService,
+    ModalService
   ]
 })
 export class ServiceModule { }

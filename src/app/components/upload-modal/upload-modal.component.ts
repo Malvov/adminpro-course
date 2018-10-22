@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UploadsService } from '../../services/uploads/uploads.service';
-import { UploadModalService } from './upload-modal.service';
+import { UploadsService, ModalService } from '../../services/service.index';
 
 @Component({
   selector: 'app-upload-modal',
@@ -14,7 +13,7 @@ export class UploadModalComponent implements OnInit {
 
   constructor(
     public _uploadsService: UploadsService,
-    public _uploadModalService: UploadModalService
+    public _modalService: ModalService
   ) { }
 
   ngOnInit() {
@@ -42,9 +41,9 @@ export class UploadModalComponent implements OnInit {
 
   async uploadFile() {
     let ok: boolean = false;
-    await this._uploadsService.uploadFile(this.file, this._uploadModalService.type, this._uploadModalService.id)
+    await this._uploadsService.uploadFile(this.file, this._modalService.type, this._modalService.id)
     .then((res: any) => {
-      this._uploadModalService.notification.emit(res);
+      this._modalService.notification.emit(res);
       (<HTMLInputElement>document.getElementById('image')).value = '';
       ok = true;
       this.hideModal();
@@ -59,7 +58,7 @@ export class UploadModalComponent implements OnInit {
   hideModal() {
     this.tempFile = null;
     this.file = null;
-    this._uploadModalService.hideModal();
+    this._modalService.hideModal();
   }
 
 }

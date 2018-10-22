@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
-import { UserService, SearchService } from '../../services/service.index';
-import { UploadModalService } from '../../components/upload-modal/upload-modal.service';
+import { UserService, SearchService, ModalService } from '../../services/service.index';
+
 
 declare var swal: any;
 
@@ -19,12 +19,12 @@ export class UsersComponent implements OnInit {
   constructor(
     public _userService: UserService,
     public _searchService: SearchService,
-    public _uploadModalService: UploadModalService
+    public _modalService: ModalService
   ) { }
 
   ngOnInit() {
     this.getUsers();
-    this._uploadModalService.notification.subscribe(res => this.getUsers());
+    this._modalService.notification.subscribe(res => this.getUsers());
   }
 
   getUsers() {
@@ -96,6 +96,6 @@ export class UsersComponent implements OnInit {
   }
 
   showModal(id: string) {
-    this._uploadModalService.showModal('users', id);
+    this._modalService.showModal('users', id, 'upload');
   }
 }

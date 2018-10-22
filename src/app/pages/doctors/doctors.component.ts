@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Doctor } from '../../models/doctor.model';
-import { DoctorService, SearchService } from '../../services/service.index';
-import { UploadModalService } from '../../components/upload-modal/upload-modal.service';
+import { DoctorService, SearchService, ModalService } from '../../services/service.index';
+
 
 declare var swal: any;
 
@@ -20,12 +20,12 @@ export class DoctorsComponent implements OnInit {
   constructor(
     public _doctorService: DoctorService,
     public _searchService: SearchService,
-    public _uploadModalService: UploadModalService
+    public _modalService: ModalService
   ) { }
 
   ngOnInit() {
     this.getDoctors();
-    this._uploadModalService.notification.subscribe(res => this.getDoctors());
+    this._modalService.notification.subscribe(res => this.getDoctors());
   }
 
   getDoctors() {
@@ -68,7 +68,7 @@ export class DoctorsComponent implements OnInit {
   }
 
   showUploadModal(id: string) {
-    this._uploadModalService.showModal('doctors', id);
+    this._modalService.showModal('doctors', id, 'upload');
   }
 
   saveDoctor(doctor: Doctor) {

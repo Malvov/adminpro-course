@@ -1,3 +1,4 @@
+export { ModalService } from './modal/modal.service';
 export { SearchService } from './search/search.service';
 export { DoctorService } from './doctors/doctor.service';
 export { HospitalService } from './hospitals/hospital.service';

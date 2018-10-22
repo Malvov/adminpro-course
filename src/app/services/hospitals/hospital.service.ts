@@ -60,7 +60,7 @@ export class HospitalService {
      // hospital.user = this.user;
      let url = SERVICES_URL + '/hospitals' + '?token=' + this.token;
      return this.http.post(url, hospital).map( (res: any) => {
-       swal('Hospital created', hospital.name, 'success');
+       swal('Hospital created', res.hospital.name, 'success');
        return res.hospital;
      });
    }
