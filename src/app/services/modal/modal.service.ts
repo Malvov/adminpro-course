@@ -13,6 +13,7 @@ export class ModalService {
   public uploadHidden: string = 'upload-hidden';
   public selectHidden: string = 'select-hidden';
   public notification = new EventEmitter<any>();
+  public document: any;
 
   private typeSubject: Subject<string>;
   public typeToObserve: Observable<string>;
@@ -31,6 +32,10 @@ export class ModalService {
     this.id = null;
     this.type = null;
     this.modalType = null;
+    if (this.modalType === 'select') {
+      this.notification.emit(this.document);
+    }
+    // this.document = null;
   }
 
   showModal(type: string, id: string, modalType: string) {
@@ -40,6 +45,7 @@ export class ModalService {
         break;
       case 'select':
         this.selectHidden = '';
+
         break;
     }
     this.id = id;

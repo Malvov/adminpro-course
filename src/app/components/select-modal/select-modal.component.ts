@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModalService, HospitalService, SearchService } from '../../services/service.index';
 
 @Component({
@@ -13,6 +13,7 @@ export class SelectModalComponent implements OnInit {
   count: number;
   collection: any[] = [];
   loading: boolean = false;
+  @Output() document: EventEmitter<any> = new EventEmitter<any>();
   constructor(
     public _modalService: ModalService,
     public _searchService: SearchService,
@@ -23,6 +24,9 @@ export class SelectModalComponent implements OnInit {
     this._modalService.typeToObserve.subscribe((type: string) => {
       this.title = type;
       this.getCollection();
+      this.document.subscribe(res => {
+        this._modalService.document = res;
+      });
     });
   }
 
@@ -72,5 +76,10 @@ export class SelectModalComponent implements OnInit {
       });
     }
   }
+
+  selectDocument(document: any) {
+    this.document.next(document);
+  }
+
 
 }

@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-body">
 
-        <input #searchInput type="text" class="form-control" [attr.placeholder]="placeholder" [(ngModel)]="term" (ngModelChange)="searchTerm($event)"> 
+        <input #searchInput type="text" class="form-control" [attr.placeholder]="placeholder" [(ngModel)]="term" (ngModelChange)="outPutTerm.emit(this.term)"> 
 
       </div>
     </div>

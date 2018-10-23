@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class DoctorComponent implements OnInit {
   doctor: Doctor = new Doctor('', '', null, '', '');
-  hospital: Hospital = new Hospital('');
+  hospital: any;
   doctors: Doctor[] = [];
   hospitals: Hospital[] = [];
   doctorId: string = '';
@@ -34,6 +34,9 @@ export class DoctorComponent implements OnInit {
     });
     this._modalService.notification.subscribe(res => {
       this.doctor.img = res.doctor.img;
+      if (this._modalService.modalType === 'select') {
+        this.hospital = this._modalService.document || null;
+      }
     });
   }
 
@@ -80,5 +83,9 @@ export class DoctorComponent implements OnInit {
   }
   showHospitalsModal() {
     this._modalService.showModal('hospitals', '', 'select');
+  }
+
+  viewHospital() {
+    console.log(this._modalService.document);
   }
 }

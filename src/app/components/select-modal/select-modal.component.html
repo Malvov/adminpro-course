@@ -28,7 +28,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let document of collection">
-                <td class="pointer">{{ document.name }}</td>
+                <td (click)="selectDocument(document)" class="pointer">{{ document.name }}</td>
               </tr>
             </tbody>
           </table>

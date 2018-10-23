@@ -16,9 +16,9 @@
                     <option value="">Select hospital</option>
                     <option *ngFor="let hospital of hospitals" [value]="hospital._id">{{ hospital.name }}</option>
                   </select> -->
-                  <!-- <p>
-                    Hospital name
-                  </p> -->
+                  <p #hospitalName (click)="viewHospital()">
+                    {{ hospital.name || '' }}
+                  </p>
               </div>
               <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
                 <i class="fa fa-save"></i>
