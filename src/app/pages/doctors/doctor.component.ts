@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Doctor } from '../../models/doctor.model';
 import { Hospital } from '../../models/hospital.model';
@@ -11,8 +11,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   styles: []
 })
 export class DoctorComponent implements OnInit {
+  @ViewChild('hospitalButton') hospitalButton: ElementRef;
   doctor: Doctor = new Doctor('', '', null, '', '');
-  hospital: any;
+  hospital: Hospital = new Hospital('');
   doctors: Doctor[] = [];
   hospitals: Hospital[] = [];
   doctorId: string = '';
@@ -33,11 +34,20 @@ export class DoctorComponent implements OnInit {
       }
     });
     this._modalService.notification.subscribe(res => {
-      this.doctor.img = res.doctor.img;
-      if (this._modalService.modalType === 'select') {
-        this.hospital = this._modalService.document || null;
+      if (res) {
+
+        if (res.doctor) {
+          this.doctor.img = res.doctor.img;
+          return;
+        }
+        if (this._modalService.document) {
+          this.hospital = this._modalService.document;
+          this.doctor.hospital = this._modalService.document;
+          return;
+        }
       }
     });
+
   }
 
   getDoctor(id: string) {
@@ -83,9 +93,5 @@ export class DoctorComponent implements OnInit {
   }
   showHospitalsModal() {
     this._modalService.showModal('hospitals', '', 'select');
-  }
-
-  viewHospital() {
-    console.log(this._modalService.document);
   }
 }

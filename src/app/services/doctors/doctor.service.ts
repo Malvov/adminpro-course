@@ -46,6 +46,7 @@ export class DoctorService {
   }
 
   createDoctor(doctor: Doctor) {
+    // doctor.hospital = '5bc95ee37d20595c7b15665d';
     let url = SERVICES_URL + '/doctors?token=' + this.token;
     return this.http.post(url, doctor).map( (res: any) => {
       swal('Doctor created', res.doctor.name + ' has been successfully created', 'success');

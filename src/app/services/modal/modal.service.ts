@@ -31,10 +31,10 @@ export class ModalService {
     this.uploadHidden = 'upload-hidden';
     this.id = null;
     this.type = null;
-    this.modalType = null;
     if (this.modalType === 'select') {
       this.notification.emit(this.document);
     }
+    this.modalType = null;
     // this.document = null;
   }
 
