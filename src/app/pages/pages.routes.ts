@@ -6,13 +6,14 @@ import {ProgressComponent} from './progress/progress.component';
 import {FirstChartComponent} from './first-chart/first-chart.component';
 import {AccountSettingsComponent} from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
-import { LoginGuard } from '../services/service.index';
+import { LoginGuard, AdminGuard } from '../services/service.index';
 import {RxjsComponent} from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
 import { HospitalsComponent } from './hospitals/hospitals.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorComponent } from './doctors/doctor.component';
+import { SearchComponent } from './search/search.component';
 
 
 const pagesRoutes: Routes = [
@@ -25,13 +26,16 @@ const pagesRoutes: Routes = [
       { path: 'promises', component: PromisesComponent, data: { title: 'Promises' } },
       { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Account settings' }},
       { path: 'rxjs', component: RxjsComponent, data: { title: 'RxJS' }},
-
+      { path: 'search/:term', component: SearchComponent, data: { title: 'Search' }},
       // Management
       { path: 'profile', component: ProfileComponent, data: { title: 'User profile'} },
       { path: 'hospitals', component: HospitalsComponent, data: { title: 'Hospitals management'} },
       { path: 'doctors', component: DoctorsComponent, data: { title: 'Doctors management'} },
       { path: 'doctors/:id', component: DoctorComponent, data: {title: 'Doctor profile'} },
-      { path: 'users', component: UsersComponent, data: { title: 'Users management'} },
+      { 
+        path: 'users', component: UsersComponent, data: { title: 'Users management'},
+        canActivate: [AdminGuard]
+      },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ] }
 ];

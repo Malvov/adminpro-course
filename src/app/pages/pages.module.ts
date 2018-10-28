@@ -39,6 +39,7 @@ import { SearchInputComponent } from '../components/search-input/search-input.co
 import { LoadingComponent } from '../components/loading/loading.component';
 import { DoctorComponent } from './doctors/doctor.component';
 import { SelectModalComponent } from '../components/select-modal/select-modal.component';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { SelectModalComponent } from '../components/select-modal/select-modal.co
     DoctorComponent,
     SearchInputComponent,
     SelectModalComponent,
-    LoadingComponent
+    LoadingComponent,
+    SearchComponent
   ],
   exports: [
     DashboardComponent,

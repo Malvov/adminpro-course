@@ -3,8 +3,11 @@ import { User } from '../../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { SERVICES_URL } from 'src/app/config/config';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { UploadsService } from '../uploads/uploads.service';
+
 declare var swal: any;
 
 @Injectable({
@@ -14,6 +17,7 @@ export class UserService {
 
   user: User;
   token: string;
+  menu = [];
 
   constructor(
     public http: HttpClient,
@@ -32,19 +36,23 @@ export class UserService {
      if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
       this.user = JSON.parse(localStorage.getItem('user'));
+      this.menu = JSON.parse(localStorage.getItem('menu'));
      } else {
        this.token = '';
        this.user = null;
+       this.menu = null;
      }
      return { token: this.token, user: this.user} ;
    }
 
-   setInStorage(id: string, token: string, user: User) {
+   setInStorage(id: string, token: string, user: User, menu: any) {
     localStorage.setItem('id', id);
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('menu', JSON.stringify(menu));
     this.user = user;
     this.token = token;
+    this.menu = menu;
    }
 
    createUser(user: User) {
@@ -54,6 +62,9 @@ export class UserService {
       (res: any) => {
         swal('User created', user.email, 'success');
         return res.user;
+      }).catch( err => {
+        swal(err.error.message, err.error.errors.message, 'error');
+        return throwError(err);
       });
    }
 
@@ -65,19 +76,22 @@ export class UserService {
        (res: any) => {
 
         if (user._id === this.user._id) {
-          this.setInStorage(res.user._id, this.token, res.user);
+          this.setInStorage(res.user._id, this.token, res.user, res.menu);
         }
 
          swal('User updated', res.user.name, 'success');
          return true;
-       });
+       }).catch( err => {
+        swal(err.error.message, err.error.errors.message, 'error');
+        return throwError(err);
+      });
    }
    uploadFile(file: File, id: string) {
      this._uploadFile.uploadFile(file, 'users', id).then(
        (res: any) => {
          this.user.img = res.user.img;
          swal('Image uploaded successfully', this.user.name, 'success');
-         this.setInStorage(id, this.token, this.user);
+         this.setInStorage(id, this.token, this.user, this.menu);
        }).catch(error => {
          console.log(error);
         });
@@ -107,7 +121,8 @@ export class UserService {
      let url = SERVICES_URL + '/login/google';
      return this.http.post(url, {token}).map(
        (res: any) => {
-         this.setInStorage(res.id, res.token, res.user);
+         this.setInStorage(res.id, res.token, res.user, res.menu);
+         console.log(res);
          return true;
        }
      );
@@ -124,17 +139,23 @@ export class UserService {
     let url = SERVICES_URL + '/login';
     return this.http.post(url, user).map(
       (res: any) => {
-        this.setInStorage(res.id, res.token, res.user);
+        this.setInStorage(res.id, res.token, res.user, res.menu);
+        // console.log(res);
         return true;
       }
-    );
+    ).catch( err => {
+      swal('There was a problem with your login', err.error.message, 'error');
+      return throwError(err);
+    });
    }
 
    logOut() {
      this.user = null;
      this.token = '';
+     this.menu = [];
      localStorage.removeItem('token');
      localStorage.removeItem('user');
+     localStorage.removeItem('menu');
      this.router.navigate(['/login']);
    }
 }

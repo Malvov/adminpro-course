@@ -5,9 +5,11 @@ declare function initPlugins();
 @Component({
   selector: 'app-no-page-found',
   templateUrl: './page-not-found.component.html',
-  styles: []
+  styleUrls: ['./styles.component.css']
 })
 export class PageNotFoundComponent implements OnInit {
+
+  year: number = new Date().getFullYear();
 
   constructor() { }
 
